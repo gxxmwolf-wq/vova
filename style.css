@@ -290,3 +290,19 @@ footer { background: #111827; color: var(--gray); padding: 2rem 0; border-top: 1
     .gallery-container { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .contacts-wrapper { grid-template-columns: 1fr; }
 }
+/* Галерея (Сетка) - Теперь крутится естественно вместе со страницей */
+.gallery-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 15px; 
+    padding: 10px; 
+    border-radius: 20px; 
+    background: #f1f5f9; 
+}
+/* Адаптив Lightbox для мобильных (удобные кнопки) */
+    .lightbox-nav { width: 44px; height: 44px; font-size: 1.2rem; background: rgba(0,0,0,0.6); }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+    .lightbox-close { top: 15px; right: 15px; font-size: 35px; }
+    .lightbox-counter { top: 20px; left: 15px; }
+    .lightbox-img { max-width: 100%; max-height: 70vh; border-radius: 8px; }

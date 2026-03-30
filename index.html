@@ -197,41 +197,60 @@
     </div>
 
 <script>
-    // Обновленный скрипт с логикой галереи
+    // Функция короткого приятного виброотклика (только для Android)
+    const triggerVibro = () => {
+        if (navigator.vibrate) {
+            navigator.vibrate(15); // 15 мс — короткий премиальный щелчок
+        }
+    };
+
     async function initGallery() {
         const grid = document.getElementById('portfolio-grid');
-        const ext = '.webp'; 
         const folder = 'img/';
-        let imagesArray = []; // Массив для хранения всех найденных картинок
-        
-        // Загружаем картинки
-        for (let i = 1; i <= 30; i++) {
+        const ext = '.webp';
+        const totalImagesToCheck = 30;
+        let imagesArray = [];
+
+        // Быстрая ПАРАЛЛЕЛЬНАЯ проверка картинок
+        const checkImage = async (i) => {
             const path = `${folder}${i}${ext}`;
             try {
                 const res = await fetch(path, { method: 'HEAD' });
-                if (res.ok) {
-                    imagesArray.push(path);
-                    const div = document.createElement('div');
-                    div.className = 'gallery-item fade-up';
-                    div.innerHTML = `<img src="${path}" alt="Вышивка ${i}" class="gallery-img">`;
-                    
-                    // Вместо новой вкладки - открываем модальное окно, передаем номер картинки
-                    const currentIndex = imagesArray.length - 1;
-                    div.onclick = () => openLightbox(currentIndex, imagesArray);
-                    
-                    grid.appendChild(div);
-                } else { break; }
-            } catch { break; }
+                if (res.ok) return path;
+            } catch { return null; }
+            return null;
+        };
+
+        const promises = [];
+        for (let i = 1; i <= totalImagesToCheck; i++) {
+            promises.push(checkImage(i));
         }
+
+        // Ждем загрузки всех проверок
+        const results = await Promise.all(promises);
+        imagesArray = results.filter(path => path !== null);
+
+        // Отрисовка с "ленивой" загрузкой
+        imagesArray.forEach((path, index) => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item fade-up';
+            div.innerHTML = `<img src="${path}" alt="Вышивка ${index + 1}" class="gallery-img" loading="lazy">`;
+            
+            // Открытие фото + Вибро
+            div.onclick = () => {
+                triggerVibro();
+                openLightbox(index, imagesArray);
+            };
+            grid.appendChild(div);
+        });
         
-        // Анимация при скролле
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
     }
 
-    // Логика работы модального окна (Lightbox)
+    // Логика модального окна
     let currentImageIndex = 0;
     let galleryImages = [];
 
@@ -240,44 +259,56 @@
         currentImageIndex = index;
         
         const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const lbTotal = document.getElementById('lb-total');
-        
-        lbTotal.textContent = galleryImages.length;
+        document.getElementById('lb-total').textContent = galleryImages.length;
         updateLightboxImage();
         
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Запрещаем скролл сайта на фоне
+        document.body.style.overflow = 'hidden'; // Блокируем фон
     }
 
     function updateLightboxImage() {
         const lbImg = document.getElementById('lightbox-img');
-        const lbCurrent = document.getElementById('lb-current');
-        
-        // Зацикливание (если долистали до конца - переход в начало)
         if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
         if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
         
         lbImg.src = galleryImages[currentImageIndex];
-        lbCurrent.textContent = currentImageIndex + 1;
+        document.getElementById('lb-current').textContent = currentImageIndex + 1;
     }
 
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
-        document.body.style.overflow = ''; // Возвращаем скролл
+        document.body.style.overflow = ''; // Возвращаем скролл сайту
     }
 
-    // События кнопок модального окна
-    document.querySelector('.lightbox-close').onclick = closeLightbox;
-    document.querySelector('.lightbox-prev').onclick = (e) => { e.stopPropagation(); currentImageIndex--; updateLightboxImage(); };
-    document.querySelector('.lightbox-next').onclick = (e) => { e.stopPropagation(); currentImageIndex++; updateLightboxImage(); };
+    // Кнопки управления + ВИБРО ПРИ КАЖДОМ КЛИКЕ
+    document.querySelector('.lightbox-close').onclick = () => {
+        triggerVibro();
+        closeLightbox();
+    };
     
-    // Закрытие при клике на темный фон
+    document.querySelector('.lightbox-prev').onclick = (e) => { 
+        e.stopPropagation(); 
+        triggerVibro(); // Щелчок при листании влево
+        currentImageIndex--; 
+        updateLightboxImage(); 
+    };
+    
+    document.querySelector('.lightbox-next').onclick = (e) => { 
+        e.stopPropagation(); 
+        triggerVibro(); // Щелчок при листании вправо
+        currentImageIndex++; 
+        updateLightboxImage(); 
+    };
+    
+    // Закрытие по клику мимо фото
     document.getElementById('lightbox').onclick = (e) => {
-        if (e.target === document.getElementById('lightbox')) closeLightbox();
+        if (e.target === document.getElementById('lightbox')) {
+            triggerVibro();
+            closeLightbox();
+        }
     };
 
-    // Управление с клавиатуры
+    // Клавиатура для ПК (без изменений)
     document.addEventListener('keydown', (e) => {
         if (!document.getElementById('lightbox').classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
@@ -285,6 +316,7 @@
         if (e.key === 'ArrowRight') { currentImageIndex++; updateLightboxImage(); }
     });
 
+    // Запуск
     initGallery();
 </script>
 </body>
