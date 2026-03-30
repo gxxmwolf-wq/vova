@@ -20,16 +20,16 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container nav-wrap" style="justify-content: center;">
-            <ul class="menu">
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#portfolio">Наши работы</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#contacts">Контакты</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar">
+    <div class="container nav-wrap">
+        <ul class="menu">
+            <li><a href="#about" class="menu-link">О нас</a></li>
+            <li><a href="#portfolio" class="menu-link">Работы</a></li>
+            <li><a href="#reviews" class="menu-link">Отзывы</a></li>
+            <li><a href="#contacts" class="menu-link">Контакты</a></li>
+        </ul>
+    </div>
+</nav>
 
     <header class="hero">
         <div class="container hero-wrap">
@@ -256,6 +256,26 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
     }
+
+    // Подсветка активного пункта меню при скролле
+window.addEventListener('scroll', () => {
+    let scrollDistance = window.scrollY;
+    
+    document.querySelectorAll('.section, header').forEach((el, i) => {
+        if (el.offsetTop - document.querySelector('.navbar').clientHeight <= scrollDistance) {
+            document.querySelectorAll('.menu a').forEach((link) => {
+                if (link.classList.contains('active')) {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Находим ссылку, которая ведет к текущей секции
+            const activeId = el.getAttribute('id') || 'hero';
+            const activeLink = document.querySelector(`.menu a[href="#${activeId}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
+    });
+});
 
     // Логика модального окна
     let currentImageIndex = 0;
