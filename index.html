@@ -164,18 +164,23 @@
         </div>
     </section>
 
-    <section id="policy" style="background: #f1f5f9; padding: 2rem 0; font-size: 0.85rem; color: #64748b; border-top: 1px solid #e2e8f0;">
-    <div class="container" style="text-align: center; max-width: 900px;">
-        <p style="margin-bottom: 0.5rem;">
-            Нажимая на кнопки связи, вы соглашаетесь на обработку персональных данных в соответствии с ФЗ № 152. 
-            Оператор: <strong>ИП Коростова Инна Петровна (ОГРН: 324619600164818)</strong>.
-        </p>
-        <p>
-            Сайт использует сервис аналитики <strong>Яндекс.Метрика</strong> и файлы Cookies для улучшения работы. 
-            Если вы не согласны со сбором данных, пожалуйста, покиньте сайт или отключите Cookies в настройках браузера.
-        </p>
-    </div>
-</section>
+    <section class="seo-text section bg-light" style="padding: 3rem 0; font-size: 0.9rem; border-top: 1px solid #e5e7eb;">
+        <div class="container">
+            <div style="column-count: 2; column-gap: 40px; color: #6b7280;">
+                <h3 style="color: var(--dark); margin-bottom: 1rem; font-size: 1.1rem;">Услуги компьютерной вышивки в Ростове-на-Дону</h3>
+                <p>Наша студия предлагает услуги профессиональной машинной вышивки любой сложности. Мы специализируемся на брендировании одежды для бизнеса: нанесение логотипов на футболки, худи, поло, бейсболки и корпоративные куртки. Использование высококачественных немецких нитей гарантирует долговечность изображения — вышивка не деформируется после промышленных стирок и не выгорает на солнце.</p>
+                <p style="margin-top: 1rem;">Для силовых структур, спортивных команд и охранных предприятий мы предлагаем срочное изготовление шевронов и патчей на термоклеевой основе или липучке (велкро). Мы работаем как с крупным оптом (спецодежда, мерч), так и с индивидуальными заказами от 1 штуки. Благодаря современному парку оборудования, «Ростовская вышивка» обеспечивает ювелирную точность каждого стежка.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="policy" style="background: #f8fafc; padding: 2.5rem 0; font-size: 0.85rem; color: #64748b; line-height: 1.5; border-top: 1px solid #e2e8f0;">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <p style="margin-bottom: 1rem;">Мы работаем честно и бережно относимся к вашим данным согласно закону <strong>№ 152-ФЗ</strong>. Нажимая на кнопки связи (WhatsApp, Telegram или звонок), вы соглашаетесь на обработку информации, необходимой исключительно для консультации по вашему заказу.</p>
+            <p>Этот сайт использует сервис <strong>Яндекс.Метрика</strong> и файлы Cookies. Это помогает нам понимать, какие разделы вам интересны, и делать сайт удобнее. Если вы против сбора статистики, пожалуйста, воздержитесь от использования сайта.</p>
+            <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.8;">Оператор: ИП Коростова Инна Петровна (ОГРН: 324619600164818, ИНН: 612602169716)</p>
+        </div>
+    </section>
 
     <footer style="background: #111827; padding: 2rem 0; text-align: center; color: #6b7280; border-top: 1px solid #374151;">
         <div class="container">
@@ -183,33 +188,103 @@
         </div>
     </footer>
 
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-counter"><span id="lb-current">1</span> из <span id="lb-total">0</span></div>
+        <button class="lightbox-nav lightbox-prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Увеличенное фото">
+        <button class="lightbox-nav lightbox-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
 <script>
+    // Обновленный скрипт с логикой галереи
     async function initGallery() {
         const grid = document.getElementById('portfolio-grid');
         const ext = '.webp'; 
         const folder = 'img/';
+        let imagesArray = []; // Массив для хранения всех найденных картинок
         
+        // Загружаем картинки
         for (let i = 1; i <= 30; i++) {
             const path = `${folder}${i}${ext}`;
             try {
                 const res = await fetch(path, { method: 'HEAD' });
                 if (res.ok) {
+                    imagesArray.push(path);
                     const div = document.createElement('div');
                     div.className = 'gallery-item fade-up';
                     div.innerHTML = `<img src="${path}" alt="Вышивка ${i}" class="gallery-img">`;
                     
-                    div.onclick = () => window.open(path, '_blank');
+                    // Вместо новой вкладки - открываем модальное окно, передаем номер картинки
+                    const currentIndex = imagesArray.length - 1;
+                    div.onclick = () => openLightbox(currentIndex, imagesArray);
+                    
                     grid.appendChild(div);
                 } else { break; }
             } catch { break; }
         }
         
+        // Анимация при скролле
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
     }
+
+    // Логика работы модального окна (Lightbox)
+    let currentImageIndex = 0;
+    let galleryImages = [];
+
+    function openLightbox(index, images) {
+        galleryImages = images;
+        currentImageIndex = index;
+        
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbTotal = document.getElementById('lb-total');
+        
+        lbTotal.textContent = galleryImages.length;
+        updateLightboxImage();
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Запрещаем скролл сайта на фоне
+    }
+
+    function updateLightboxImage() {
+        const lbImg = document.getElementById('lightbox-img');
+        const lbCurrent = document.getElementById('lb-current');
+        
+        // Зацикливание (если долистали до конца - переход в начало)
+        if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+        if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+        
+        lbImg.src = galleryImages[currentImageIndex];
+        lbCurrent.textContent = currentImageIndex + 1;
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = ''; // Возвращаем скролл
+    }
+
+    // События кнопок модального окна
+    document.querySelector('.lightbox-close').onclick = closeLightbox;
+    document.querySelector('.lightbox-prev').onclick = (e) => { e.stopPropagation(); currentImageIndex--; updateLightboxImage(); };
+    document.querySelector('.lightbox-next').onclick = (e) => { e.stopPropagation(); currentImageIndex++; updateLightboxImage(); };
     
+    // Закрытие при клике на темный фон
+    document.getElementById('lightbox').onclick = (e) => {
+        if (e.target === document.getElementById('lightbox')) closeLightbox();
+    };
+
+    // Управление с клавиатуры
+    document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('lightbox').classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') { currentImageIndex--; updateLightboxImage(); }
+        if (e.key === 'ArrowRight') { currentImageIndex++; updateLightboxImage(); }
+    });
+
     initGallery();
 </script>
 </body>
