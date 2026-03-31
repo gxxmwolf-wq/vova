@@ -23,10 +23,10 @@
 <nav class="navbar">
     <div class="container nav-wrap">
         <ul class="menu">
-            <li><a href="#about" class="menu-link">О нас</a></li>
-            <li><a href="#portfolio" class="menu-link">Работы</a></li>
-            <li><a href="#reviews" class="menu-link">Отзывы</a></li>
-            <li><a href="#contacts" class="menu-link">Контакты</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#portfolio">Работы</a></li>
+            <li><a href="#journal">Журнал</a></li> <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#contacts">Контакты</a></li>
         </ul>
     </div>
 </nav>
@@ -90,6 +90,203 @@
         </div>
     </section>
 
+
+    <section id="journal" class="section bg-light">
+        
+    <div class="container">
+        <h2 id="journal-top" class="section-title fade-up">Журнал мастерской</h2>
+        <p class="section-subtitle fade-up">История наших работ и ключевые события</p>
+
+        <div class="accordion-journal fade-up delay-1">
+            
+            <div class="acc-item">
+                <button class="acc-header" onclick="toggleAcc(this)">
+                    <span class="acc-date">28 мар 2026</span>
+                    <span class="acc-title">Срочные шевроны для команды</span>
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="acc-body">
+                    <p>Изготовили партию патчей для спортивного клуба. Оцифровали логотип и отшили 30 штук за сутки. Успели прямо к началу соревнований!</p>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <button class="acc-header" onclick="toggleAcc(this)">
+                    <span class="acc-date">20 мар 2026</span>
+                    <span class="acc-title">Спецодежда для строительной бригады</span>
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="acc-body">
+                    <p>Нанесли плотную вышивку на 20 рабочих курток. Использовали нити повышенной прочности, которые выдерживают агрессивные стирки.</p>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <button class="acc-header" onclick="toggleAcc(this)">
+                    <span class="acc-date">15 мар 2026</span>
+                    <span class="acc-title">Ювелирная работа: мелкий шрифт</span>
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <div class="acc-body">
+                    <p>Оцифровали сложный логотип с текстом высотой всего 4мм. Благодаря точности оборудования, каждая буква читается идеально.</p>
+                </div>
+            </div>
+
+            <div id="history-block" style="display: none;">
+                
+                <div class="year-divider">2025 год</div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">14 дек 2025</span>
+                        <span class="acc-title">Новогодний марафон: 200 наборов полотенец</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Выполнили крупный корпоративный заказ на именную вышивку банных наборов. Работа в три смены, сдали точно к праздникам.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">05 окт 2025</span>
+                        <span class="acc-title">Вышивка на коже: кастом для байкеров</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Сложная работа с натуральной кожей. Нанесли эмблему клуба на спинки жилетов. Использовали специальные иглы и усиленную нить.</p></div>
+                </div>
+
+                <div class="year-divider">2024 год</div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">22 авг 2024</span>
+                        <span class="acc-title">Шевроны для охранного холдинга</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Партия из 500 шевронов с окантовкой. Разработали программу вышивки с учетом мелких деталей герба. Все патчи на велкро-липучке.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">10 мая 2024</span>
+                        <span class="acc-title">Реставрация любимой куртки</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Закрыли порез на брендовой куртке стильной вышивкой в тон изделия. Клиент счастлив, вещь спасена!</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">15 фев 2024</span>
+                        <span class="acc-title">Мерч для кофейни: фартуки и кепки</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Комплексное брендирование формы бариста. Вышивка на плотной джинсовой ткани, устойчивая к постоянным стиркам и износу.</p></div>
+                </div>
+
+                <div class="year-divider">2023 год</div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">12 ноя 2023</span>
+                        <span class="acc-title">Свадебные метрики на подушках</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Индивидуальный заказ: вышивка дат и имен на бархатных подушках. Использовали нежную серебристую нить и каллиграфический шрифт.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">03 июля 2023</span>
+                        <span class="acc-title">Казачья форма: шевроны и погоны</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Традиционная вышивка для казачьего общества Ростова. Строгое соблюдение устава и цветовой гаммы в производстве знаков различия.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">19 мар 2023</span>
+                        <span class="acc-title">Ремонт кимоно: усиление швов вышивкой</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Нестандартная задача по укреплению ткани спортивной формы. Совместили функциональность и эстетику.</p></div>
+                </div>
+
+                <div class="year-divider">2022 год</div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">05 дек 2022</span>
+                        <span class="acc-title">Логотипы на автомобильные подголовники</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Брендирование салона авто. Вышивка на чехлах из экокожи. Работа требовала особой настройки натяжения нити.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">14 авг 2022</span>
+                        <span class="acc-title">Вышивка на бейсболках: 100 штук для промо</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Использовали специальные пяльцы для головных уборов. Объемная 3D-вышивка сделала логотип заметным и премиальным.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">21 апр 2022</span>
+                        <span class="acc-title">Пасхальные салфетки с орнаментом</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Сезонный заказ на столовое белье. Традиционные славянские узоры, выполненные в современной технике компьютерной вышивки.</p></div>
+                </div>
+
+                <div class="year-divider">2020 - 2021 гг.</div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">18 окт 2021</span>
+                        <span class="acc-title">Детская метрика: первый важный заказ</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Вышивка на мягкой игрушке: имя, дата рождения, вес и рост малыша. Самый трогательный формат нашей работы.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">02 июня 2021</span>
+                        <span class="acc-title">Форма для сети пекарен</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Вышивка логотипов на поварских кителях. Подобрали нити, устойчивые к высоким температурам и жиру.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">12 ноя 2020</span>
+                        <span class="acc-title">Маски с вышивкой: тренд года</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>В период пандемии изготовили сотни многоразовых масок с индивидуальными логотипами и забавными надписями.</p></div>
+                </div>
+
+                <div class="acc-item">
+                    <button class="acc-header" onclick="toggleAcc(this)">
+                        <span class="acc-date">15 авг 2020</span>
+                        <span class="acc-title">Основание мастерской на Кремовом</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="acc-body"><p>Начало нашего пути! Установка первого вышивального оборудования и выполнение первых заказов для соседей и друзей.</p></div>
+                </div>
+            </div> <div class="text-center" style="margin-top: 2.5rem;">
+                <button id="show-history-btn" class="btn-history" onclick="showHistory()">
+                    Листать историю назад <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section id="reviews" class="section">
         <div class="container">
             <div class="reviews-header fade-up">
@@ -139,6 +336,8 @@
         </div>
     </section>
 
+    
+
     <section id="contacts" class="section bg-dark">
         <div class="container">
             <h2 class="section-title fade-up">Связаться с нами</h2>
@@ -150,18 +349,27 @@
         <i class="fa-solid fa-location-dot"></i>
         <div><h4>Наш адрес</h4><p>г. Ростов-на-Дону, Кремовый пер., 48</p></div>
     </div>
+
+
+
     
-    <div class="contacts-wrapper" style="margin-top: 2rem;">
-        <a href="https://wa.me/79034075570" target="_blank" class="btn-contact btn-wa">WhatsApp</a>
-        <a href="https://t.me/+79034075570" target="_blank" class="btn-contact btn-tg">Telegram</a>
-        <a href="https://max.ru/u/79034075570" target="_blank" class="btn-contact btn-max">Max</a>
-        
-        <a href="#" 
-           class="btn-contact btn-call" 
-           onclick="window.location.href='tel:' + '+7' + '903' + '407' + '5570'; return false;">
-            📞 +7 (903) 407-55-70
-        </a>
-    </div>
+    
+    <div class="contacts-wrapper" style="margin-top: 1rem;">
+    <a href="https://wa.me/79034075570?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20NitkaRnd.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B2%D1%8B%D1%88%D0%B8%D0%B2%D0%BA%D0%B8..." 
+       target="_blank" class="btn-contact btn-wa">WhatsApp</a>
+
+    <a href="https://t.me/share/url?url=https://nitkarnd.ru&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20NitkaRnd.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B2%D1%8B%D1%88%D0%B8%D0%B2%D0%BA%D0%B8..." 
+       target="_blank" class="btn-contact btn-tg">Telegram</a>
+
+    <a href="https://max.ru/u/79034075570?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%AF%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20NitkaRnd.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%B2%D1%8B%D1%88%D0%B8%D0%B2%D0%BA%D0%B8..." 
+       target="_blank" class="btn-contact btn-max">Max</a>
+
+    <a href="#" 
+       class="btn-contact btn-call" 
+       onclick="window.location.href='tel:' + '+7' + '903' + '407' + '5570'; triggerVibro(); return false;">
+        📞 +7 (903) 407-55-70
+    </a>
+</div>
 </div>
 
                 <div class="contact-map fade-up delay-1">
@@ -345,6 +553,43 @@ window.addEventListener('scroll', () => {
 
     // Запуск
     initGallery();
+
+    function toggleAcc(header) {
+    const item = header.parentElement;
+    const isActive = item.classList.contains('active');
+    
+    // Закрываем все остальные (по желанию, чтобы был только один открыт)
+    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('active'));
+    
+    if (!isActive) {
+        item.classList.add('active');
+        triggerVibro(); // Фирменный щелчок при открытии
+    }
+}
+
+function showHistory() {
+    const history = document.getElementById('history-block');
+    const btn = document.getElementById('show-history-btn');
+    
+    if (history.style.display === 'none') {
+        // РАЗВОРАЧИВАЕМ
+        history.style.display = 'block';
+        history.style.animation = 'fadeInUp 0.5s ease';
+        btn.innerHTML = 'Свернуть историю <i class="fa-solid fa-chevron-up"></i>';
+        triggerVibro();
+    } else {
+        // СВОРАЧИВАЕМ
+        history.style.display = 'none';
+        btn.innerHTML = 'Показать историю <i class="fa-solid fa-chevron-down"></i>';
+        
+        // Плавный возврат к началу журнала, чтобы не "выкидывало" в пустоту
+        document.getElementById('journal-top').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        triggerVibro();
+    }
+}
 </script>
 </body>
 </html>

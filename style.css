@@ -372,3 +372,179 @@ footer { background: #111827; color: var(--gray); padding: 2rem 0; border-top: 1
         -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     }
 }
+
+/* Стильный Аккордеон */
+.accordion-journal {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.acc-item {
+    border-bottom: 1px solid #e2e8f0;
+    background: #fff;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.acc-header {
+    width: 100%;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.acc-header:hover { background: #f8fafc; }
+
+.acc-date {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    min-width: 120px;
+}
+
+.acc-title {
+    flex: 1;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+.acc-header i {
+    color: var(--gray);
+    transition: transform 0.3s ease;
+}
+
+.acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    background: #fcfcfc;
+    padding: 0 1.2rem;
+}
+
+.acc-body p {
+    padding: 1rem 0 1.5rem 135px; /* Выравнивание под заголовок */
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Активное состояние */
+.acc-item.active .acc-body {
+    max-height: 200px; /* С запасом */
+}
+
+.acc-item.active .acc-header i {
+    transform: rotate(45deg); /* Плюс превращается в крестик */
+    color: var(--primary);
+}
+
+.btn-history {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.btn-history:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .acc-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .acc-body p { padding: 0 0 1rem 0; }
+}
+/* Разделитель лет в журнале */
+.year-divider {
+    text-align: center;
+    padding: 2rem 0 1rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.year-divider::before, .year-divider::after {
+    content: "";
+    position: absolute;
+    top: 55%;
+    width: 30%;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.year-divider::before { left: 0; }
+.year-divider::after { right: 0; }
+
+/* Кнопка с иконкой поворота времени */
+.btn-history i {
+    margin-left: 8px;
+    transition: transform 0.5s ease;
+}
+
+.btn-history:hover i {
+    transform: rotat
+    e(-180deg); /* Эффект отматывания времени */
+}
+
+.year-divider {
+    text-align: center;
+    padding: 2.5rem 0 1rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    opacity: 0.7;
+}
+
+.year-divider::before, .year-divider::after {
+    content: "";
+    position: absolute;
+    top: 55%;
+    width: 25%;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.year-divider::before { left: 5%; }
+.year-divider::after { right: 5%; }
+
+.btn-history i {
+    margin-left: 8px;
+    transition: transform 0.4s ease;
+}
+
+.btn-history:hover i {
+    transform: rotate(-180deg);
+}
+
+.btn-history {
+    min-width: 220px; /* Фиксируем ширину кнопки */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-history i {
+    transition: transform 0.3s ease;
+}
+
+/* Если в кнопке chevron-up (когда развернуто), иконка может смотреть вверх */
